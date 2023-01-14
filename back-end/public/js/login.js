@@ -16,7 +16,7 @@ myform.addEventListener('submit', function (e) {
         }, 3000);
     }
     else {
-        axios.post('http://localhost:4000/user-login', { password: password.value, email: email.value })
+        axios.post('http://13.127.194.106:4000/user-login', { password: password.value, email: email.value })
             .then(res => {
                 alert_div.innerHTML = res.data.message;
                 alert_div.classList.add('alert-success');
@@ -27,7 +27,7 @@ myform.addEventListener('submit', function (e) {
                 }, 2000);
                 localStorage.setItem('token', res.data.token);
                 localStorage.setItem('username', res.data.username);
-                window.location.href = "file:///C:/Users/hrith/Desktop/Practice/front-end/html/expense_tracker.html";
+                window.location.href = "../html/expense_tracker.html";
             })
             .catch(err => {
                 alert_div.innerHTML = err.response.data.message;

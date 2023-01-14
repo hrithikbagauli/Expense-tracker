@@ -60,7 +60,7 @@ leaderboard_btn.addEventListener('click', function (e) {
 })
 
 function getLeaderboard() {
-    axios.get('http://localhost:4000/purchase/get-scoreboard', { headers: { Authorization: token } })
+    axios.get('http://13.127.194.106:4000/purchase/get-scoreboard', { headers: { Authorization: token } })
         .then(res => {
             if (res.data.length > 0) {
                 leaderboard.replaceChildren();
@@ -96,13 +96,13 @@ logout_user.addEventListener('click', function (e) {
 })
 
 buy_premium.addEventListener('click', function (e) {
-    axios.get('http://localhost:4000/purchase/buy-premium', { headers: { Authorization: token } })
+    axios.get('http://13.127.194.106:4000/purchase/buy-premium', { headers: { Authorization: token } })
         .then(res => {
             let options = {
                 "key": res.data.key_id,
                 "order_id": res.data.order.id,
                 "handler": function (res) {
-                    axios.post('http://localhost:4000/purchase/update-transaction-status', {
+                    axios.post('http://13.127.194.106:4000/purchase/update-transaction-status', {
                         orderId: options.order_id,
                         payment_id: res.razorpay_payment_id
                     }, { headers: { "Authorization": token } })
@@ -130,7 +130,7 @@ buy_premium.addEventListener('click', function (e) {
 })
 
 function updatePaymentStatus(res) {
-    axios.post('http://localhost:4000/purchase/update-transaction-status', {
+    axios.post('http://13.127.194.106:4000/purchase/update-transaction-status', {
         orderId: res.data.order.id,
         payment_id: null
     }, { headers: { "Authorization": token } })
@@ -163,7 +163,7 @@ function showOnScreen(itemname, description, amount, category, img_src, id, tota
     tr.addEventListener('click', function (e) {
         e.preventDefault();
         if (e.target.classList.contains('deletebtn')) {
-            axios.post('http://localhost:4000/delete-item', { id: e.target.id }, { headers: { "Authorization": token } })
+            axios.post('http://13.127.194.106:4000/delete-item', { id: e.target.id }, { headers: { "Authorization": token } })
                 .then(() => {
                     getData();
                 })
@@ -173,7 +173,7 @@ function showOnScreen(itemname, description, amount, category, img_src, id, tota
 }
 
 function getDownloads() {
-    axios.get('http://localhost:4000/download/get-downloads', { headers: { "Authorization": token } })
+    axios.get('http://13.127.194.106:4000/download/get-downloads', { headers: { "Authorization": token } })
         .then(downloads => {
             download_items.replaceChildren();
             let content;
@@ -208,7 +208,7 @@ function saveData() {
     if (isEmpty) {
         items.replaceChildren();
     }
-    axios.post('http://localhost:4000/add-expense', { itemname: itemname.value, description: description.value, amount: amount.value, category: category.value, img_src: src }, { headers: { "Authorization": token } })
+    axios.post('http://13.127.194.106:4000/add-expense', { itemname: itemname.value, description: description.value, amount: amount.value, category: category.value, img_src: src }, { headers: { "Authorization": token } })
         .then((res) => {
             isEmpty = false;
             getData();
@@ -226,7 +226,7 @@ function getData(page_no) {
     if (page_no) {
         page = page_no;
     }
-    axios.get(`http://localhost:4000/get-expenses?page=${page}&items_per_page=${items_per_page}`, { headers: { "Authorization": token } })
+    axios.get(`http://13.127.194.106:4000/get-expenses?page=${page}&items_per_page=${items_per_page}`, { headers: { "Authorization": token } })
         .then(res => {
             if (!res.data.isPremium) {
                 buy_premium.style.display = 'block';
@@ -311,7 +311,7 @@ for (let i = 0; i < pagination_div1.children.length; i++) {
 }
 
 function showReport(type, page_no) {
-    axios.get(`http://localhost:4000/purchase/get-report?reportType=${type}&page=${page_no}`, { headers: { "Authorization": token } })
+    axios.get(`http://13.127.194.106:4000/purchase/get-report?reportType=${type}&page=${page_no}`, { headers: { "Authorization": token } })
         .then(res => {
             report_table.replaceChildren();
             if (res.data.result.length > 0) {
@@ -358,7 +358,7 @@ function showReport(type, page_no) {
 
 download_report.addEventListener('click', async function (e) {
     e.preventDefault();
-    const download = await axios.get('http://localhost:4000/purchase/download', { headers: { "Authorization": token } });
+    const download = await axios.get('http://13.127.194.106:4000/purchase/download', { headers: { "Authorization": token } });
     window.location.href = download.data.fileUrl;
 })
 

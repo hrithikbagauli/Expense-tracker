@@ -21,7 +21,7 @@ exports.forgotPassword = (req, res, next) => {
                 uuid: uuid,
                 isActive: true
             }).then(() => {
-                res.status(201).json(`http://localhost:4000/password/forgot-password/${uuid}`);
+                res.status(201).json(`http://13.127.194.106:4000/password/forgot-password/${uuid}`);
             });
         }
         else{

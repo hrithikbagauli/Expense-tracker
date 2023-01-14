@@ -16,7 +16,7 @@ myform.addEventListener('submit', function (e) {
         }, 3000);
     }
     else {
-        axios.post('http://localhost:4000/user-signup', { name: username.value, password: password.value, email: email.value })
+        axios.post('http://13.127.194.106:4000/user-signup', { name: username.value, password: password.value, email: email.value })
             .then(res => {
                 alert_div.innerHTML = 'Account created successfully!'
                 alert_div.classList.add('alert-success');

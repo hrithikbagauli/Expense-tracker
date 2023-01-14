@@ -36,6 +36,9 @@ app.use(expenseRoutes);
 app.use('/purchase', premiumRoutes);
 app.use('/password', passwordRoutes);
 app.use('/download', downloadRoutes);
+app.use((req, res)=>{
+  res.sendFile(path.join(__dirname, `public/html/${req.url}`))
+})
 
 User.hasMany(Expense);
 Expense.belongsTo(User);
