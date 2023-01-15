@@ -92,7 +92,7 @@ function getLeaderboard() {
 logout_user.addEventListener('click', function (e) {
     e.preventDefault(e);
     localStorage.clear();
-    window.location.href = "../html/login.html";
+    window.location.href = "../index.html";
 })
 
 buy_premium.addEventListener('click', function (e) {

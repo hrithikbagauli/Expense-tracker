@@ -7,7 +7,7 @@ myform.addEventListener('submit', function(e){
     .then(res=>{
         alert('Password updated successfully!');
         new_password.value = '';
-        // window.location.href = 'file:\\\C:\Users\hrith\Desktop\Practice\front-end\html\login.html';
+        window.location.href = '../../index.html';
     })
     .catch(err=>console.log(err));
 })
